@@ -25,7 +25,7 @@ for c in range(maxlen):
 string2 = "".join(words)
     
 string = string1 + string2    
-print(string)    
+#print(string)    
 huff = Huffman(string)  
 huff.huffman_code()
 b = huff.huffman_encode()
