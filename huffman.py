@@ -11,13 +11,11 @@ DEBUG = 0
 
 class Huffman():
     """
-    Huffman class accepts string (unicode string - what do you expect in Python 3.x)
-    __init__ = initializes the algorhythm with text/string
-    assign_code = function for assembling nodes in recursion
-    huffman_code = generate tree/code from text/string
-    huffman_encode = encode given text/string with generated tree/code
+    Huffman class accepts string (unicode string - what do you expect in 
+    Python 3.x :)
     """
     def __init__(self, text):
+        "initializes the algorithm with text/string"
         self.code = None
         self.tree = None
         self.string = None
@@ -36,6 +34,7 @@ class Huffman():
             print(sorted(self.d.items(), key=lambda x:(x[1],x[0]), reverse = True))
         
     def assign_code(self, nodes, label, result, prefix = ''):
+        "function for assembling nodes in recursion"
         if DEBUG == 2:
             print("assign =", nodes, label, result, prefix)
         child = nodes[label]
@@ -50,6 +49,7 @@ class Huffman():
 
 
     def huffman_code(self):
+        "generate tree/code from text/string"
         vals = self.d.copy()
         # leafs initialization
         nodes = { n: [] for n in vals.keys() }
@@ -77,6 +77,7 @@ class Huffman():
             print("tree =",self.tree)
 
     def huffman_encode(self):
+        "encode given text/string with generated tree/code"
         self.string = BitArray()
         for a in self.text:
             self.string.append(Bits(bin=self.code[a]))
@@ -84,7 +85,6 @@ class Huffman():
 
 
 class TestUtils(unittest.TestCase):
-    
     def test_huffman_encode(self):
         huff = Huffman("1112234")
         huff.huffman_code()
